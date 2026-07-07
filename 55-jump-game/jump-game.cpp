@@ -5,6 +5,7 @@ public:
         for(int i=0; i<nums.size(); i++){
             if(i> maxjump) return false;
             maxjump = max(maxjump, i+nums[i]);
+            if (maxjump >= nums.size() - 1) return true;
         }
         return true;
     }
