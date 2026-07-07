@@ -5,11 +5,8 @@ public:
         sort(g.begin(), g.end());
         sort(s.begin(), s.end());
         while(l<n && r<m){
-            if(g[l]>s[r]) r++;
-            else{
-                l++;
-                r++;
-            }
+            if(g[l]<=s[r]) l++;
+            r++;
         }
         return l;
     }
