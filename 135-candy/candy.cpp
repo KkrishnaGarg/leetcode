@@ -3,6 +3,7 @@ public:
     int candy(vector<int>& ratings) {
         int n = ratings.size();
         vector<int> distribution(n, 1);
+        int total = 0;
 
         // Left to right
         for (int i = 1; i < n; i++) {
@@ -16,12 +17,10 @@ public:
             if (ratings[i] > ratings[i + 1] && distribution[i] <= distribution[i+1]) {
                 distribution[i] = distribution[i + 1] + 1;
             }
+            total += distribution[i];
         }
-
-        int total = 0;
-        for (int candy : distribution) {
-            total += candy;
-        }
+        total += distribution[n-1];
+        
 
         return total;
     }
