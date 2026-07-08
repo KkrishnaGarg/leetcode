@@ -1,27 +1,43 @@
 class Solution {
 public:
     int candy(vector<int>& ratings) {
+
         int n = ratings.size();
-        vector<int> distribution(n, 1);
-        int total = 0;
+        int candies = n;
 
-        // Left to right
-        for (int i = 1; i < n; i++) {
-            if (ratings[i] > ratings[i - 1]) {
-                distribution[i] = distribution[i - 1] + 1;
+        int i = 1;
+        while (i < n) {
+            // Skip equal ratings, no need to change candy count
+            if (ratings[i] == ratings[i - 1]) {
+                i++;
+                continue;
             }
+
+            // Initialize increasing slope counter
+            int peak = 0;
+
+            // Traverse strictly increasing ratings
+            while (i < n && ratings[i] > ratings[i - 1]) {
+                peak++;
+                candies += peak;
+                i++;
+            }
+
+            // Initialize decreasing slope counter
+            int valley = 0;
+
+            // Traverse strictly decreasing ratings
+            while (i < n && ratings[i] < ratings[i - 1]) {
+                valley++;
+                candies += valley;
+                i++;
+            }
+
+            // Remove extra candy given to peak (overlap of increasing and decreasing)
+            candies -= min(peak, valley);
         }
 
-        // Right to left
-        for (int i = n - 2; i >= 0; i--) {
-            if (ratings[i] > ratings[i + 1] && distribution[i] <= distribution[i+1]) {
-                distribution[i] = distribution[i + 1] + 1;
-            }
-            total += distribution[i];
-        }
-        total += distribution[n-1];
-        
-
-        return total;
+        // Return total minimum candies required
+        return candies;
     }
 };
