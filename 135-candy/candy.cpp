@@ -3,41 +3,38 @@ public:
     int candy(vector<int>& ratings) {
 
         int n = ratings.size();
-        int candies = n;
+        int sum = 1;
 
         int i = 1;
         while (i < n) {
             // Skip equal ratings, no need to change candy count
             if (ratings[i] == ratings[i - 1]) {
                 i++;
+                sum++;
                 continue;
             }
 
             // Initialize increasing slope counter
-            int peak = 0;
-
+            int peak = 1;
             // Traverse strictly increasing ratings
             while (i < n && ratings[i] > ratings[i - 1]) {
                 peak++;
-                candies += peak;
+                sum += peak;
                 i++;
             }
 
             // Initialize decreasing slope counter
-            int valley = 0;
-
+            int down = 1;
             // Traverse strictly decreasing ratings
             while (i < n && ratings[i] < ratings[i - 1]) {
-                valley++;
-                candies += valley;
+                sum += down;
                 i++;
+                down++;
             }
 
-            // Remove extra candy given to peak (overlap of increasing and decreasing)
-            candies -= min(peak, valley);
+            if(down>peak) sum += down-peak;
         }
 
-        // Return total minimum candies required
-        return candies;
+        return sum;
     }
 };
