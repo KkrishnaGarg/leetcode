@@ -8,10 +8,9 @@ public:
         int i = 1;
         while (i < n) {
             // Skip equal ratings, no need to change candy count
-            if (ratings[i] == ratings[i - 1]) {
+            while (i<n && ratings[i] == ratings[i - 1]) {
                 i++;
                 sum++;
-                continue;
             }
 
             // Initialize increasing slope counter
