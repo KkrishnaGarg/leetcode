@@ -1,7 +1,6 @@
 class Solution {
 public:
     vector<int> arrayRankTransform(vector<int>& arr) {
-        int n = arr.size();
         set<int> st;
 
         for (int x : arr)
@@ -11,12 +10,11 @@ public:
         int r = 1;
 
         for (int x : st) {
-            rank[x] = r;
-            r++;
+            rank[x] = r++;
         }
 
-        for(int i=0; i<n; i++){
-            arr[i] = rank[arr[i]];
+        for (int &x : arr) {
+            x = rank[x];
         }
 
         return arr;
