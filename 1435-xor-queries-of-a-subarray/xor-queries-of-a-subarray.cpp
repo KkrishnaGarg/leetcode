@@ -11,9 +11,7 @@ public:
         vector<int> ans;
         n = queries.size();
         for(int i=0; i<n; i++){
-            if(queries[i][0] == queries[i][1]) 
-                ans.push_back(arr[queries[i][0]]);
-            else if(queries[i][0] != 0)
+            if(queries[i][0] != 0)
                 ans.push_back((brr[queries[i][0] - 1]) ^ brr[queries[i][1]]);
             else
                 ans.push_back(brr[queries[i][1]]);
