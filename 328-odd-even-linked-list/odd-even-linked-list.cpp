@@ -12,30 +12,33 @@ class Solution {
 public:
     ListNode* oddEvenList(ListNode* head) {
         if(head==nullptr || head->next==nullptr || head->next->next==nullptr) return head;
-        ListNode * evenStart = new ListNode(-1);
+
+        ListNode * oddStart = head;
+        
+        ListNode * evenStart =  new ListNode(head->next->val);
         ListNode * evenMover = evenStart;
-        ListNode * oddStart = new ListNode(-1);
-        ListNode * oddMover = oddStart;
+        
         ListNode * temp = head;
         int cnt = 0;
         while(temp){
             cnt++;
             // odd
-            if(cnt&1){
+            if(cnt&1 && cnt>1){
                 ListNode * nOdd = new ListNode(temp->val);
-                oddMover->next = nOdd;
-                oddMover = nOdd;
+                oddStart->next = nOdd;
+                oddStart = nOdd;
+                
             }
             // even
-            else{
+            else  if(!(cnt&1) && cnt>2){
                 ListNode * nEven = new ListNode(temp->val);
                 evenMover->next = nEven;
                 evenMover = nEven;
             }
             temp = temp->next;
         }
-        oddMover->next = evenStart->next;
-        return oddStart->next;
+        oddStart->next = evenStart;
+        return head;
         
     }
 };
