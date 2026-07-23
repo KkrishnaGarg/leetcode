@@ -12,6 +12,5 @@ public:
         node->val = node->next->val;
         ListNode* after = node->next;
         node->next = after->next;
-        delete after;
     }
 };
