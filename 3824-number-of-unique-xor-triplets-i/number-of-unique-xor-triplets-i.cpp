@@ -6,7 +6,6 @@ public:
         if (n <= 2)
             return n;
 
-        // return 1 << (32 - __builtin_clz(n));
         int i;
         for(i=31; i>=0; i--){
             if(n & 1<<i) break;
