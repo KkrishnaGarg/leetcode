@@ -41,7 +41,7 @@ public:
             t2->next = t1->next;
             t2 = t2->next;
         }
-        t1->next = nullptr;
+        // t1->next = nullptr;
         return dummy->next;
     }
 };
