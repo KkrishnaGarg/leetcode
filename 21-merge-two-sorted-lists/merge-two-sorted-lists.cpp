@@ -11,54 +11,24 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        if (list1 == nullptr) return list2;
-        if (list2 == nullptr) return list1;
-        int x;
-        ListNode * temp1, * temp2;
-        if(list1->val > list2->val){
-            x = list2->val;
-            temp2 = list2->next;
-            temp1 = list1;  
-        }
-        else{
-            x = list1->val;
-            temp1 = list1->next;
-            temp2 = list2;
-        }
-
-        ListNode* l3 = new ListNode(x);
-        ListNode* mover = l3;
-
-        while(temp1 && temp2){
-            if(temp1->val >= temp2->val){
-                ListNode* temp3 = new ListNode(temp2->val);
-                mover->next = temp3;
-                mover = temp3;
-                temp2 = temp2->next;
+        ListNode* dummy = new ListNode(-1);
+        ListNode* temp = dummy;
+        while(list1 && list2){
+            if(list1->val < list2->val){
+                temp->next = list1;
+                temp = list1;
+                list1 = list1->next;
             }
             else{
-                ListNode* temp3 = new ListNode(temp1->val);
-                mover->next = temp3;
-                mover = temp3;
-                temp1 = temp1->next;
+                temp->next = list2;
+                temp = list2;
+                list2 = list2->next;
             }
         }
-
-
-        while(temp1){
-            ListNode* temp3 = new ListNode(temp1->val);
-            mover->next = temp3;
-            mover = temp3;
-            temp1 = temp1->next;
-        }
-
-        while(temp2){
-            ListNode* temp3 = new ListNode(temp2->val);
-            mover->next = temp3;
-            mover = temp3;
-            temp2 = temp2->next;
-        }
-        return l3;
+        if (list1) temp->next = list1;
+        else if (list2) temp->next = list2;
+        
+        return dummy->next;
     }
 };
 
