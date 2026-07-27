@@ -11,24 +11,32 @@
 class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        vector <int> arr;
-        for(int i=0; i<lists.size(); i++){
-            ListNode * temp = lists[i];
-            while(temp){
-                arr.push_back(temp->val);
-                temp = temp->next;
+        if(lists.size() == 0) return nullptr;
+        ListNode* head = lists[0];
+        for(int i=1; i<lists.size(); i++){
+            head = mergeTwoLists(head, lists[i]);
+        }
+        return head;
+    }
+
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        ListNode* dummy = new ListNode(-1);
+        ListNode* temp = dummy;
+        while(list1 && list2){
+            if(list1->val < list2->val){
+                temp->next = list1;
+                temp = list1;
+                list1 = list1->next;
+            }
+            else{
+                temp->next = list2;
+                temp = list2;
+                list2 = list2->next;
             }
         }
-        sort(arr.begin(), arr.end());
-        ListNode* dummy = new ListNode (-1);
-        ListNode* temp = dummy;
-        int n = arr.size();
-        if(n==0) return nullptr;
-        for(int i=0; i<n; i++){
-            ListNode* n =  new ListNode(arr[i]);
-            temp->next = n;
-            temp = n;
-        }
+        if (list1) temp->next = list1;
+        else if (list2) temp->next = list2;
+        
         return dummy->next;
     }
 };
