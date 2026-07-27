@@ -16,7 +16,10 @@ public:
         ListNode* secondStartAfterThis = list1, * firstStartfromThis = nullptr;
         while(temp1){
             if(cnt1 == a-1) secondStartAfterThis = temp1;
-            if(cnt1 == b+1) firstStartfromThis = temp1;
+            if(cnt1 == b+1){
+                firstStartfromThis = temp1;
+                break;
+            }
             if(cnt1 >= a && cnt1<=b){
                 ListNode* n = temp1;
                 temp1 = temp1->next;
