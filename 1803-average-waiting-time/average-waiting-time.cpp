@@ -2,20 +2,19 @@ class Solution {
 public:
     double averageWaitingTime(vector<vector<int>>& customers) {
         int n = customers.size();
-        vector<int> CT(n);
-        for(int i=0; i<n; i++){
-            if(i==0){
-                CT[i] = customers[i][0] + customers[i][1];
-            }
-            else{
-                if(CT[i-1] >= customers[i][0]) CT[i] = CT[i-1] + customers[i][1];
-                else CT[i] = customers[i][0] + customers[i][1];
-            }
-        }
         vector<int> WT(n);
         double sum = 0;
         for(int i=0; i<n; i++){
-            WT[i] = CT[i] - customers[i][0];
+            if(i==0){
+                WT[i] = customers[i][1];
+            }
+            else{
+                if(WT[i-1] >= customers[i][0] - customers[i-1][0]){
+                    WT[i] = WT[i-1] + customers[i-1][0] + customers[i][1] - customers[i][0];
+                }
+                else WT[i] = customers[i][1];
+            }
+
             sum += WT[i];
         }
 
