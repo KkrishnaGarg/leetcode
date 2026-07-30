@@ -6,14 +6,9 @@ public:
             hash[c-'a']++;
         }
         sort(hash.begin(), hash.end(), greater<int>());
-        int n=0;
-        for(int i=0; i<26; i++){
-            if(hash[i]>0) n++;
-            else break;
-        }
 
         int sum = 0;
-        for(int i=0; i<n; i++){
+        for(int i=0; i<26 && hash[i]>0; i++){
             if(i<8) sum += hash[i];
             else if(i<16) sum += hash[i]*2;
             else if(i<24) sum += hash[i]*3;
