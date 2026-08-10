@@ -9,7 +9,7 @@ public:
         vector<int> nsee(n);
         stack<int> st;
         for(int i=n-1; i>=0; i--){
-            while( !st.empty() && arr[st.top()]>=arr[i]) st.pop();
+            while( !st.empty() && arr[st.top()]>arr[i]) st.pop();
             if(st.empty()) nsee[i]=n;
             else nsee[i]=st.top();
             st.push(i);
@@ -18,7 +18,7 @@ public:
         vector<int> psee(n);
         stack<int> stt;
         for(int i=0; i<n; i++){
-            while( !stt.empty() && arr[stt.top()]>arr[i]) stt.pop();
+            while( !stt.empty() && arr[stt.top()]>=arr[i]) stt.pop();
             if(stt.empty()) psee[i]=-1;
             else psee[i]=stt.top();
             stt.push(i);
