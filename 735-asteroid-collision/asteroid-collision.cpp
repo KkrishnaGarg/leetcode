@@ -5,8 +5,8 @@ public:
         for(auto a : asteroids){
             if(a>0) st.push(a);
             else{
-                while(!st.empty() && st.top()*a<0 && st.top()<-1*a) st.pop();
-                if(st.empty() || st.top()*a>0) st.push(a);
+                while(!st.empty() && st.top()>0 && st.top()<-1*a) st.pop();
+                if(st.empty() || st.top()<0) st.push(a);
                 else if(st.top() == -1*a) st.pop();
             }
         }
