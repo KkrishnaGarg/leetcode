@@ -14,8 +14,7 @@ public:
         unordered_map<int, int> mpp;
         for(auto x : nums) mpp[x]++;
 
-        while (mpp[sum])
-            sum++;
+        while (mpp[sum]) sum++;
 
         return sum;
     }
