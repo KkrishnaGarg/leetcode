@@ -4,25 +4,12 @@ public:
         int sum = nums[0];
         int n = nums.size();
 
-        int i = 0;
-        int j = 1;
-
-        while(j<n)
-        {
-           if (nums[j] - nums[i] == 1)
-           {
-             sum += nums[j];
-             i++;
-             j++;
-           }
+        for (int i=1; i<n; i++) {
+            if (nums[i] == nums[i - 1] + 1)
+                sum += nums[i];
             else
-            {
-              break;
-            }
-                
+                break;
         }
-            
-        
 
         unordered_map<int, int> mpp;
         for(auto x : nums) mpp[x]++;
