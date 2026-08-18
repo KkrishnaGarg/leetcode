@@ -3,7 +3,13 @@ public:
     int largestInteger(vector<int>& nums, int k) {
         vector<int> hash(51,0);
         int n = nums.size();
-        if(k == n) return *max_element(nums.begin(), nums.end());
+        if(k == n){
+            int maxi = nums[0];
+            for(auto &x:nums){
+                maxi = max(maxi,x);
+            }
+            return maxi;
+        }
         for(auto &x : nums){
             hash[x]++;
         }
