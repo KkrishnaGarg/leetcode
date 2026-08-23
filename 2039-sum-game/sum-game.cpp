@@ -47,7 +47,8 @@ public:
         int sumDiff = abs(leftSum - rightSum);
         int qDiff = abs(leftQ - rightQ);
 
-        if(sumDiff == qDiff/2 * 9) return  false; // bob wins
-        else return true; // alice win
+        // if(sumDiff == qDiff/2 * 9) return  false; // bob wins
+        // else return true; // alice win
+        return sumDiff != (qDiff / 2) * 9;
     }
 };
