@@ -5,13 +5,10 @@ public:
         for(auto &x : nums){
             st.insert(x);
         }
-        int n = st.size();
         int x = k;
-        while(true){
-            st.insert(x);
-            if(st.size()>n) return x;
+        while (st.count(x)) {
             x += k;
         }
-        return -1;
+        return x;
     }
 };
