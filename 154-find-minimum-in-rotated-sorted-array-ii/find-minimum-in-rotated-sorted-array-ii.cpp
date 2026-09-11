@@ -8,7 +8,7 @@ public:
             int mid = (low + high) / 2;
             ans = min(ans, nums[mid]);
 
-            while(low!=mid && nums[mid]==nums[low] && nums[mid]==nums[high]){
+            while(nums[mid]==nums[low] && nums[mid]==nums[high]){
                 low++;
                 high--;
                 if(low>=high) return ans;
@@ -20,7 +20,7 @@ public:
             }
             
             else {
-                ans = min(ans, nums[high]);
+                ans = min(ans, nums[mid]);
                 high = mid - 1;
             }
         }
