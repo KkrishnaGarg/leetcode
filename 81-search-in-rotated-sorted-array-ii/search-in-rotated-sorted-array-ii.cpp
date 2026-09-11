@@ -8,10 +8,16 @@ public:
             int mid = (low + high) / 2;
             if (nums[mid] == target) return true;
 
-            while(nums[mid]==nums[low] && nums[mid]==nums[high]){
+            // while(nums[mid]==nums[low] && nums[mid]==nums[high]){
+            //     low++;
+            //     high--;
+            //     if(low>=high) return false;
+            // }
+
+            if(nums[mid]==nums[low] && nums[mid]==nums[high]){
                 low++;
                 high--;
-                if(low>=high) return false;
+                continue;
             }
 
             if (nums[low] <= nums[mid]) {
