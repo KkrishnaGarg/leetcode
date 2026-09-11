@@ -14,7 +14,7 @@ public:
             }
             
             else {
-                ans = min(ans, nums[high]);
+                ans = min(ans, nums[mid]);
                 high = mid - 1;
             }
         }
