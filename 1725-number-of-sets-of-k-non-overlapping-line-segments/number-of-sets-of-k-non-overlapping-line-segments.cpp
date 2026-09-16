@@ -35,6 +35,6 @@ public:
 
         long long inverseDenominator = modPow(denominator, MOD - 2);
 
-        return static_cast<int>(numerator * inverseDenominator % MOD);
+        return (numerator * inverseDenominator % MOD);
     }
 };
