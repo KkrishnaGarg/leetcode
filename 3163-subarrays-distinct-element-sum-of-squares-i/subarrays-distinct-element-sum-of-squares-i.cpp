@@ -4,11 +4,11 @@ public:
         int n = nums.size();
         int sum = 0;
         for(int i=0; i<n; i++){
-            unordered_set<int> st;
+            vector<int> visited(101);
             int unique = 0;
             for(int j=i; j<n; j++){
-                if(!st.count(nums[j])) unique++;
-                st.insert(nums[j]);
+                if(visited[nums[j]]==0) unique++;
+                visited[nums[j]]++;
                 sum += unique*unique;
             }
         }
