@@ -8,9 +8,10 @@ public:
             if(str == s) return 0;
             else return -1;
         }
+        char a=s[0], b=s[n-1], c=str[0], d=str[n-1]; 
         if(str == s) return 0;
-        if(s[0]==str[0] || s[n-1]==str[n-1]) return 1;
-        if(s[0]==str[n-1] && str[0]==s[n-1] && str[0]!=str[1] && str[n-1]!=str[n-2]) return 3;
+        if(a==c || b==d) return 1;
+        if(a==d && c==b && c!=str[1] && d!=str[n-2]) return 3;
         return 2;
     }
 };
