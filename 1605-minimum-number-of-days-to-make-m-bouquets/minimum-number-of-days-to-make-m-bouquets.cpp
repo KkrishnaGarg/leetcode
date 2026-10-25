@@ -3,7 +3,8 @@ public:
     int minDays(vector<int>& bloomDay, int m, int k) {
         int n = bloomDay.size();
         if(1ll*n < 1ll*m*k) return -1;
-        int low = 1, high = *max_element(bloomDay.begin(), bloomDay.end());
+        int low = *min_element(bloomDay.begin(), bloomDay.end());
+        int high = *max_element(bloomDay.begin(), bloomDay.end());
         int ans;
         while(low<=high){
             int mid = low + (high-low)/2;
